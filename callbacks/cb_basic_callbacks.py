@@ -38,3 +38,18 @@ def register_cb_basic_callbacks(app):
 
         return checkbox_options
 
+    @app.callback(  # This callback will use the Hello World input in a dataframe which is then saved into a dcc.Store
+        Output('data-store', 'data'),
+        Input('save-button', 'n_clicks'),   # Clicking the save button will trigger the callback
+        State('basic-text-input', 'value')  # Typing a text into the input box will not trigger the callback, but will provide a value for further processing
+    )
+    def set_hello_world_df(
+        save_button_n_clicks
+        , basic_text_input
+    ):
+        # Create a basic Hello World dataframe from inputs
+        df = pd.DataFrame({"Hello World": [basic_text_input]})
+        df = dc.save_df_into_store(df=df)
+
+        return df
+
