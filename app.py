@@ -10,9 +10,18 @@ import dash_bootstrap_components as dbc
 # Import app layout
 from layout.layout import layout
 
+# Import callback functions
+from callbacks.cb_basic_callbacks import register_cb_basic_callbacks
+
 # Initialise app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.config.suppress_callback_exceptions=True
+
+# Initialise app layout
+app.layout = layout
+
+# Initialise callbacks
+register_cb_basic_callbacks(app=app)
 
 # Run the app
 if __name__ == '__main__':
