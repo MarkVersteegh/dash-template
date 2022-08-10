@@ -4,7 +4,6 @@
 # Outputs are the results of the callback, such altering an element's properties
 # Inputs are elements that trigger a callback
 # States are other elements imported into the callback, but these do not trigger the callback
-# Each Dash element in the app may only once be used as a callback output
 
 # Import Python Dash modules for callbacks
 from dash.dependencies import Input, Output, State  # These Dash dependencies contain the main elements of callback functions
@@ -53,3 +52,20 @@ def register_cb_basic_callbacks(app):
 
         return df
 
+    @app.callback(  # This callback will use the Hello World dataframe from the dcc.Store and put it into display table
+        Output('data-table', 'columns'),
+        Output('data-table', 'data'),
+        Input('data-store', 'data'),
+    )
+    def display_hello_world_df(
+        data_stored
+    ):
+        # Load dataframe from data store
+        df = dc.load_df_from_store(store_df=data_stored)
+
+        # Convert retrieved data frame into columns and data
+        columns = [{"name": i, "id": i} for i in df.columns]
+        data = df.to_dict('records')
+
+        # Return population allocation data
+        return columns, data
