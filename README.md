@@ -1,92 +1,72 @@
-# Dash Template
+# Introduction 
+Python Dash is a framework for developing highly customisable front end apps that enable both user interaction and visualisation. 
+This README file describes the code and basic structure of how a Python Dash app looks like. From this scaffold code, a Dash app can be further developed according to more specific needs.
 
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Basic layout, design philosophy
+This scaffolding departs from the practical experience that GUI-based apps tend to require a lot of code and can thus quickly grow out of control.
+Furthermore there is always the possibility that code dealing with layout (the GUI itself) gets intermingled with code dealing with callbacks (the behind-the-scenes functions determining the app's behaviour).
+Therefore this scaffolding groups the app's code in the following file structure:
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/roy-zagers-ogd-projects/dash-template.git
-git branch -M main
-git push -uf origin main
+dash-template
+├── app.py
+├── assets
+│   ├── formatting.css
+│   ├── OGD prompt RGB.png
+│   └── Any other image or formatting file
+├── callbacks
+│   ├── cb_basic_callbacks.py
+│   ├── cb_gui_callbacks.py
+│   └── Any other Python script containing callback functions
+├── functions
+│   ├── data_construction.py
+│   └── Any other Python script containing generic functions
+├── layout
+│   ├── layout.py
+│   ├── tab_contents.py
+│   ├── table_contents.py
+│   └── Any other Python script containing (combinations of) layout elements
+├── Future: possibly files containing Python classes helpful for Dash
+│   └── Any Python script containing Python classes
+├── requirements.txt
+└── Any other file/directory dealing with things not directly involving the app (gitignore, virtual environment, this very README)
 ```
 
-## Integrate with your tools
+The following components make up this file structure:
+- **App.py**: the main file calling all other components of the app and the app itself
+- **Other root files**: mainly files dealing with other things than the app, except for requirements.txt, which holds a list of Python modules that need to be installed for the Dash app to run properly
+- **Callbacks**: callbacks are functions dealing with the behaviour of the app (changing the UI elements, or passing data down from UI elements to other parts of the app)
+- **Functions**: purpose-written functions that can help in providing often executed functionality, such as creating options for checkboxes and dropdowns, or for processing and manipulating data
+- **Layout**: a description of UI elements, where a layout file can be nested in other layout files, which are eventually caught in layout.py, which contains the main layout
 
-- [ ] [Set up project integrations](https://gitlab.com/roy-zagers-ogd-projects/dash-template/-/settings/integrations)
+In the future Python class files can be added to this structure, but currently this scaffolding does not have them.
 
-## Collaborate with your team
+The file structure described above provides a clear separation of functionalities in the app, and encourages developers to adhere to a modular style of developing. The philosophy of modular developing is that specific functionalities are coded in separate smaller files, rather than in huge megafiles with thousands of lines of code that are unclear and hard to maintain.
+For example, in this scaffold the behaviour of GUI elements is determined by callback functions that have been put in their own script (cb_gui_callbacks.py)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## Guidance
+All files present in this scaffolding are accompanied by comments describing components and their functionalities. This is especially true for callback function, with which beginning developers might be unfamiliar.
 
-## Test and Deploy
+# Getting Started
+To be able to use this scaffold or develop another Dash app, the following steps should be taken:
+1. Install Python 3.9 onto your system
+2. Clone the repo containing this scaffold (or any other Dash app) onto your system on a convenient location
+3. Open the repo folder in Visual Studio Code and open the terminal in Visual Studio Code
+4. In the terminal type the command ```python -m venv venv``` to create a virtual environment if it is not there yet
+5. Activite the virtual environment through the terminal with the command ```.\venv\Scripts\activate```
+6. Run the command ```pip install -r requirements.txt``` in the terminal so that the required Python modules are installed in the virtual environment
+7. Select app.py and from the Visual Studio Code menu click Run > Run Without Debugging to start the app
+8. In the terminal an URL is displayed: visit this URL to open the app in your browser
+9. After using the app, close your browser, and deactivate the virtual environment using the ```deactivate``` command
 
-Use the built-in continuous integration in GitLab.
+# Build and Test
+- When developing locally, follow the steps in the previous section to build and test newly added or altered code
+- Azure DevOps pipelines and an Azure web app will be used to provide deployment to a production environment in the cloud
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+# Contribute
+You can contribute to Dash apps by having the desire to learn Python and by having a chat with Mark Versteegh to look at possibilities.
 
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+# Further reading on Python Dash
+This README and the scaffolding cannot even nearly explain all topics that are handy and necessary for developing Dash apps. The following links are must-reads for developing Dash apps:
+- The [official Python Dash website](https://dash.plotly.com/), providing detailed documentation on all Dash components
+- A site on [Dash's nephew Dash Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/), which provides more possibilities of controlling the layout of your app
