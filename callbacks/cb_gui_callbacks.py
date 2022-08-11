@@ -4,17 +4,17 @@ from dash import callback_context   # Module that can determine which element tr
 
 
 def register_cb_gui_callbacks(app):
-    @app.callback(  # This callback will activate tab 1 upon clicking the save button
+    @app.callback(  # This callback will activate tab 2 upon clicking the save button
         Output('tabs', 'active_tab'),
         Input('save-button', 'n_clicks')
     )
-    def activate_tab1_on_hitting_save_button(
+    def activate_tab2_on_hitting_save_button(
         save_button_n_clicks
     ):
         if save_button_n_clicks > 0:
-            return 'tab-1'
-        else:
             return 'tab-2'
+        else:
+            return 'tab-1'
 
     @app.callback(  # This callback will toggle availability of the save button upon clicking cool button 2
         Output('save-button', 'disabled'),
