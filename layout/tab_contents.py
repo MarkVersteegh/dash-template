@@ -33,8 +33,7 @@ tab2_content = dbc.Row([
         ])
     , width=3),
     dbc.Col(
-        html.Div([
-        ])
+        html.Img(src=r'assets/OGD prompt RGB.png', alt='image', style={'maxHeight': '400px', 'maxWidth': '400px'})  # You can save an image in the assets folder and display it here
     , width=3),
     dbc.Col(
         html.Div([
