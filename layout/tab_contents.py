@@ -37,10 +37,27 @@ tab2_content = dbc.Row([
     , width=3),
     dbc.Col(
         html.Div([
-        ])
-    , width=3),
-    dbc.Col(
-        html.Div([
-        ])
-    , width=3)
+            dbc.Button(
+                'Just a cool button'
+                , id='cool-button-1'
+                , n_clicks=0
+                , color='primary'
+                , className='btn btn1'
+            ),
+            dbc.Button(     # Button is used to toggle save data button (save-button)
+                'Toggle save button'
+                , id='cool-button-2'
+                , n_clicks=0
+                , color='primary'
+                , className='btn btn2'
+            ),
+            dbc.Button(
+                'Another cool button'
+                , id='cool-button-3'
+                , n_clicks=0
+                , color='primary'
+                , className='btn btn3'
+            )
+        ], style={'display': 'grid'})
+    , width=6)
 ])

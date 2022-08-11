@@ -6,7 +6,7 @@ import layout.tab_contents as tc # Refers to tab content from tab_contents.py wh
 
 # Main layout
 layout = dbc.Row([ # A row is a horizontal layout element from dash bootstrap
-    html.H1('Title (in OGD-huisstijl!)'),
+    html.H1('Title (in OGD-huisstijl!)', id='title', style={'color': '#000000'}),
     dcc.Store(id='data-store'), # dcc.Store can hold data, but it needs to be stored in JSON format
     dbc.Input(
         type='text'
@@ -14,11 +14,11 @@ layout = dbc.Row([ # A row is a horizontal layout element from dash bootstrap
         , placeholder='Enter some Hello World-like text'
     ),
     dbc.Button( # Bootstrap button, which is quite similar to the generic Dash button
-        'Save entered value'
+        'Save entered value to data table on Tab 1'
         , id='save-button'
         , n_clicks=0
+        , disabled=False
         , color='primary'
-        , className='btn btn1'
         , style={'width': '49%', 'margin-left': '1%', 'margin-bottom': '1%'}
     ),
     dbc.Tabs([

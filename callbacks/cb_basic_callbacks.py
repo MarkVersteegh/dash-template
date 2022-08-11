@@ -8,7 +8,6 @@
 
 # Import Python Dash modules for callbacks
 from dash.dependencies import Input, Output, State  # These Dash dependencies contain the main elements of callback functions
-from dash import callback_context   # Module that can determine which element triggered a callback, handy for determining a workflow based on the triggering element
 
 # Import modules for working with data
 import pandas as pd
@@ -23,9 +22,6 @@ def register_cb_basic_callbacks(app):
     def set_checkbox_options(
         placeholder
     ):
-        # Get the callback context and derive the triggering element from it
-        ctx = callback_context
-        trigger_element = ctx.triggered[0]['prop_id']
 
         checkbox_options = pd.DataFrame({"option": ['Ja', 'Nee'], "sort": [1, 2]})
         checkbox_options = dc.construct_options(
