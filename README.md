@@ -11,9 +11,12 @@ Therefore this scaffolding groups the app's code in the following file structure
 dash-template
 ├── app.py
 ├── assets
-│   └── formatting (css) or images
+│   ├── formatting.css
+│   ├── OGD prompt RGB.png
+│   └── Any other image or formatting file
 ├── callbacks
 │   ├── cb_basic_callbacks.py
+│   ├── cb_gui_callbacks.py
 │   └── Any other Python script containing callback functions
 ├── functions
 │   ├── data_construction.py
@@ -39,6 +42,7 @@ The following components make up this file structure:
 In the future Python class files can be added to this structure, but currently this scaffolding does not have them.
 
 The file structure described above provides a clear separation of functionalities in the app, and encourages developers to adhere to a modular style of developing. The philosophy of modular developing is that specific functionalities are coded in separate smaller files, rather than in huge megafiles with thousands of lines of code that are unclear and hard to maintain.
+For example, in this scaffold the behaviour of GUI elements is determined by callback functions that have been put in their own script (cb_gui_callbacks.py)
 
 ## Guidance
 All files present in this scaffolding are accompanied by comments describing components and their functionalities. This is especially true for callback function, with which beginning developers might be unfamiliar.
