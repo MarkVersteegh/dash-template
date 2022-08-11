@@ -2,6 +2,7 @@
 # Callback functions are called when an element from the layout is altered, clicked or filled in
 # A callback function consists of one or more outputs, inputs, or states
 # Outputs are the results of the callback, such altering an element's properties
+# An element property can be set as an output to a callback function only once
 # Inputs are elements that trigger a callback
 # States are other elements imported into the callback, but these do not trigger the callback
 
@@ -38,11 +39,13 @@ def register_cb_basic_callbacks(app):
         return checkbox_options
 
     @app.callback(  # This callback will use the Hello World input in a dataframe which is then saved into a dcc.Store
+        # Outputs need to be listed before input, inputs before states
         Output('data-store', 'data'),
         Input('save-button', 'n_clicks'),   # Clicking the save button will trigger the callback
         State('basic-text-input', 'value')  # Typing a text into the input box will not trigger the callback, but will provide a value for further processing
     )
-    def set_hello_world_df(
+    def set_hello_world_df( # The callback header is followed by a function
+        # The number of arguments passed to the functions equals the number of inputs and states. The position of arguments matches those of inputs/states in the header
         save_button_n_clicks
         , basic_text_input
     ):
@@ -50,7 +53,7 @@ def register_cb_basic_callbacks(app):
         df = pd.DataFrame({"Hello World": [basic_text_input]})
         df = dc.save_df_into_store(df=df)
 
-        return df
+        return df   # The variable in the return statement is passed to the outputs
 
     @app.callback(  # This callback will use the Hello World dataframe from the dcc.Store and put it into display table
         Output('data-table', 'columns'),
@@ -68,4 +71,4 @@ def register_cb_basic_callbacks(app):
         data = df.to_dict('records')
 
         # Return population allocation data
-        return columns, data
+        return columns, data    # This callback function has two outputs, so it has two return objects as well

@@ -12,16 +12,19 @@ from layout.layout import layout
 
 # Import callback functions
 from callbacks.cb_basic_callbacks import register_cb_basic_callbacks
+    # Reference to the script with callback functions, importing the wrapper function containing the callback functions
 
 # Initialise app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+    # The app itself is defined here, along with its formatting/style
+    # The styling comes from an external stylesheets, which can be custom as well!
 app.config.suppress_callback_exceptions=True
 
 # Initialise app layout
 app.layout = layout
 
 # Initialise callbacks
-register_cb_basic_callbacks(app=app)
+register_cb_basic_callbacks(app=app)    # The app itself must be passed to the wrapper callback function
 
 # Run the app
 if __name__ == '__main__':
