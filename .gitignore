@@ -546,3 +546,7 @@ FodyWeavers.xsd
 *.gitignore
 *.iml
 *.xml
+
+
+### Ignore virtual environment
+**/venv/*
