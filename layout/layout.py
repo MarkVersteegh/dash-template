@@ -6,7 +6,7 @@ import layout.tab_contents as tc # Refers to tab content from tab_contents.py wh
 
 # Main layout
 layout = dbc.Row([ # A row is a horizontal layout element from dash bootstrap
-    html.H1('Title'),
+    html.H1('Title (in OGD-huisstijl!)'),
     dcc.Store(id='data-store'), # dcc.Store can hold data, but it needs to be stored in JSON format
     dbc.Input(
         type='text'
